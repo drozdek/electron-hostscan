@@ -1,0 +1,14 @@
+body {
+  background-color: #cccccc;
+  font: italic small-caps normal 13px/150% Arial, Helvetica, sans-serif;
+}
+
+input {
+  /*display: block;*/
+  /*border: 3px solid red;*/
+}
+
+input[type=text] {
+  height: 15px;
+  width: 150px
+}

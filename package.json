@@ -1,0 +1,21 @@
+{
+  "name": "scanhost",
+  "version": "1.0.0",
+  "description": "Find out what IP address is open on a specific host...",
+  "main": "main.js",
+  "dependencies": {
+    "pretty-bytes": "^2.0.1"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.35.2"
+  },
+  "keywords": [
+	"scanhost",
+    "host",
+    "scan",
+    "portscan",
+    "ipscan"
+  ],
+  "author": "Rafael (raf.drozdowski@gmail.com)",
+  "license": "MIT"
+}

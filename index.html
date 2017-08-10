@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>HostScan by Rafal</title>
+  <script>
+    if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+    }
+  </script>
+  <script src="js/jquery-2.2.4.js"></script>
+  <script>
+    if (window.module)
+      module = window.module;
+  </script>
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+  <h3>IP of host to check:</h3>
+  <form id="form">
+    <input type="text" maxlength="30" id="ip" /><input type="submit" value="send" id="submit" />
+  </form>
+  <div id="scan-result"></div>
+  <script>
+    require('./js/process.js');
+  </script>
+</body>
+
+</html>
