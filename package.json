@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "Find out what IP address is open on a specific host...",
   "main": "main.js",
-  "dependencies": {
-    "pretty-bytes": "^2.0.1"
-  },
   "devDependencies": {
-    "electron-prebuilt": "^0.35.2"
+    "electron": "~1.6.2",
+	"jquery": "^2.2.4"
+  },
+  "scripts": {
+    "run": "electron ."
   },
   "keywords": [
-	"scanhost",
+    "scanhost",
     "host",
     "scan",
     "portscan",
