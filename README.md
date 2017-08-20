@@ -8,7 +8,7 @@ Port scanner built with electron framework:
 
 ## Use
 
-Just put an IP address into an input field and press <ENTER>
+Just put an IP address into an input field and press >>ENTER<<
 
 ```bash
 # Clone this repository
