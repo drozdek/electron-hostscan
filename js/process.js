@@ -26,7 +26,7 @@ $(document).ready(function () {
   /**
    * @method checkAddr
    * 
-   * @param {int} param
+   * @param {int} param - specifies an IP address
    */
 
   var checkAddr = function (param) {
@@ -40,7 +40,6 @@ $(document).ready(function () {
   /**
    * @method checkServer
    * 
-   * @param {string} ip
    */
   function scanHost() {
     $('#scan-result').empty().append('Scanning host...  <br />');
