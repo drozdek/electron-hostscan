@@ -5,7 +5,8 @@
   "main": "main.js",
   "devDependencies": {
     "electron": "~1.6.2",
-    "jquery": "^2.2.4"
+    "jquery": "^2.2.4",
+    "ts-node": "^9.0.0"
   },
   "scripts": {
     "run": "electron ."
