@@ -5,7 +5,7 @@
   "main": "main.js",
   "devDependencies": {
     "electron": "~1.6.2",
-	"jquery": "^2.2.4"
+    "jquery": "^2.2.4"
   },
   "scripts": {
     "run": "electron ."
@@ -18,5 +18,8 @@
     "ipscan"
   ],
   "author": "Rafael (raf.drozdowski@gmail.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.1.2"
+  }
 }
