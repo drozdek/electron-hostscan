@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>HostScan by Rafal</title>
+  <title>HostScan by Drozdek</title>
   <link href="./css/styles.css" rel="stylesheet" />
   <script>
     if (typeof module === 'object') {
@@ -19,7 +19,9 @@
   <form id="form">
     <input type="text" maxlength="30" id="ip" /><input type="submit" value="send" id="submit" />
   </form>
-  <div id="scan-result"></div>
+  <p id="scan-result-failed"></p>
+  <p id="scan-result"></p>
+
   <script src='./dist/process.js'></script>
 </body>
 

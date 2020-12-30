@@ -1,3 +1,8 @@
+:root {
+  --result_port-open: rgba(255, 0, 0, 1);
+  --result_port-error: rgba(0, 0, 0, 1);
+}
+
 body {
   background-color: #cccccc;
   font: italic small-caps normal 13px/150% Arial, Helvetica, sans-serif;
@@ -11,4 +16,12 @@ input {
 input[type=text] {
   height: 15px;
   width: 150px
+}
+
+.result_port-open {
+  color: var(--result_port-open)
+}
+
+.result_port-error {
+  color: var(--result_port-error)
 }
