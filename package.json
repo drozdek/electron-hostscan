@@ -4,7 +4,7 @@
   "description": "Find out what IP address is open on a specific host...",
   "main": "main.js",
   "devDependencies": {
-    "electron": "~1.6.2",
+    "electron": "~7.2.4",
     "jquery": "^2.2.4",
     "ts-node": "^9.0.0"
   },
