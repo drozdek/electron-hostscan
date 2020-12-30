@@ -13,11 +13,13 @@ $(() => {
   // obj ERROR to hold error responses
   let ERROR: object = {};
 
-  $('body').on('click', 'input[type=submit]', function (e) {
+  $('body').on('click', 'input[type=submit]', function (e: any) {
 
     let _val = $('input[type=text]').val();
 
     if (checkAddr(_val as string)) {
+      $('#scan-result').empty();
+      $('#scan-result-failed').empty();
       scanHost();
       return false;
     }
@@ -46,8 +48,8 @@ $(() => {
    */
   function scanHost() {
     let $scanResult = $('#scan-result'),
+      $scanResultFailed = $('#scan-result-failed'),
       $inputVal = $('input[type=text]').val();
-    $scanResult.empty().append('Scanning host...  <br />');
 
     var start = 1,
       end = 100;
@@ -60,17 +62,24 @@ $(() => {
           s = new net.Socket();
 
         s.connect(port, $inputVal, function () {
-          $scanResult.append('OPEN: ' + port + '<br />');
+          $scanResult.
+            empty().
+            addClass('result_port-open').
+            append('OPEN: ' + port);
         });
 
         s.on('data', function (data: object) {
-          $scanResult.append('DATA: ' + data + '<br/>');
+          $scanResult.
+          append('DATA: ' + data);
         });
 
         s.on('error', function (e: string) {
-          $scanResult.append('port ' + port + "<br/>");
-          if (e.toString() === 'ECONNREFUSED') {
-             return;
+          $scanResultFailed.
+            addClass('result_port-error').
+            text('Scanning port ' + port);
+
+          if (e === 'ECONNREFUSED') {
+            return;
           }
         });
       })(start);
