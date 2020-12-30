@@ -2,14 +2,15 @@ const { app, BrowserWindow } = require('electron')
 
 function createWindow () {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 350,
+    height: 250,
     webPreferences: {
       nodeIntegration: true
     }
   })
 
   win.loadFile('index.html')
+  win.setMenu(null);
 }
 
 app.whenReady().then(createWindow)
