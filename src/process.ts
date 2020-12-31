@@ -7,7 +7,7 @@ $(() => {
 
   /**
    * HostScanner
-   * 
+   *
    * @constructor
    */
   function HostScanner() { };
@@ -20,7 +20,6 @@ $(() => {
   $('body').on('click', 'input[type=submit]', function (e: any) {
 
     let _val = $('input[type=text]').val();
-    alert('on click')
     if (checkAddr(_val as string)) {
       $scanResult.empty();
       $scanResultFailed.empty();
@@ -34,11 +33,10 @@ $(() => {
 
   /**
    * @method getIP
-   * 
+   *
    * @param {string} url
    */
   function getIP(url: string): string {
-    alert(' get ip')
     let ip = dns.lookup(url, function (error: any, addresses: string, family: any) {
       return addresses
     });
@@ -47,11 +45,10 @@ $(() => {
 
   /**
    * @method checkAddr
-   * 
+   *
    * @param {int} param
    */
   var checkAddr = function (param: string): boolean | string {
-    // alert('check addr')
     if (typeof param === "undefined" || !getIP(param))
       return false;
     else
@@ -60,11 +57,10 @@ $(() => {
 
   /**
    * @method checkServer
-   * 
+   *
    * @param {string} IP
    */
   function scanHost() {
-    // alert('scanhost')
     let ip = getIP($('#ip_addr').val() as string);
 
     var start = 1,
