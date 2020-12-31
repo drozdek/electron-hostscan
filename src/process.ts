@@ -37,7 +37,7 @@ $(() => {
    * @param {string} url
    */
   function getIP(url: string): string {
-    let ip = dns.lookup(url, function (error: any, addresses: string, family: any) {
+    let ip = dns.lookup(url, function (error: string, addresses: string, family: string) {
       return addresses
     });
     return ip;
@@ -79,7 +79,7 @@ $(() => {
             addClass('result_port-open').
             append('OPEN: ' + port);
         });
-
+        
         s.on('data', function (data: object) {
           $scanResult.
             append('DATA: ' + data);
