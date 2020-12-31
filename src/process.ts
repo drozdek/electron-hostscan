@@ -1,5 +1,7 @@
 const net = require('net');
 const app = require('electron');
+const dns = require('dns');
+const util = require('util');
 
 $(() => {
 
@@ -11,15 +13,17 @@ $(() => {
   function HostScanner() { };
 
   // obj ERROR to hold error responses
-  let ERROR: object = {};
+  let ERROR: object = {},
+    $scanResult = $('#scan-result'),
+    $scanResultFailed = $('#scan-result-failed');
 
   $('body').on('click', 'input[type=submit]', function (e: any) {
 
     let _val = $('input[type=text]').val();
-
+    alert('on click')
     if (checkAddr(_val as string)) {
-      $('#scan-result').empty();
-      $('#scan-result-failed').empty();
+      $scanResult.empty();
+      $scanResultFailed.empty();
       scanHost();
       return false;
     }
@@ -29,13 +33,26 @@ $(() => {
   });
 
   /**
+   * @method getIP
+   * 
+   * @param {string} url
+   */
+  function getIP(url: string): string {
+    alert(' get ip')
+    let ip = dns.lookup(url, function (error: any, addresses: string, family: any) {
+      return addresses
+    });
+    return ip;
+  }
+
+  /**
    * @method checkAddr
    * 
    * @param {int} param
    */
-
   var checkAddr = function (param: string): boolean | string {
-    if (typeof param === "undefined" || !net.isIPv4(param))
+    // alert('check addr')
+    if (typeof param === "undefined" || !getIP(param))
       return false;
     else
       return true;
@@ -44,12 +61,11 @@ $(() => {
   /**
    * @method checkServer
    * 
-   * @param {string} ip
+   * @param {string} IP
    */
   function scanHost() {
-    let $scanResult = $('#scan-result'),
-      $scanResultFailed = $('#scan-result-failed'),
-      $inputVal = $('input[type=text]').val();
+    // alert('scanhost')
+    let ip = getIP($('#ip_addr').val() as string);
 
     var start = 1,
       end = 100;
@@ -61,7 +77,7 @@ $(() => {
         var port = start,
           s = new net.Socket();
 
-        s.connect(port, $inputVal, function () {
+        s.connect(port, ip, function () {
           $scanResult.
             empty().
             addClass('result_port-open').
@@ -70,7 +86,7 @@ $(() => {
 
         s.on('data', function (data: object) {
           $scanResult.
-          append('DATA: ' + data);
+            append('DATA: ' + data);
         });
 
         s.on('error', function (e: string) {
