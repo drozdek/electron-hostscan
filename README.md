@@ -12,7 +12,7 @@ Just put an IP address into an input field and press >>ENTER<<
 
 ```bash
 # Clone this repository
-git clone https://github.com/drozdek/electron-host-scan
+git clone https://github.com/drozdek/electron-hostscan.git
 # Go into the repository
 cd electron-hostscan
 # Install dependencies
