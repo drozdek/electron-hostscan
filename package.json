@@ -1,7 +1,7 @@
 {
   "name": "scanhost",
   "version": "1.0.0",
-  "description": "Find out what IP address is open on a specific host...",
+  "description": "Find out what ports are open on a specific host...",
   "main": "main.js",
   "devDependencies": {
     "electron": "^11.1.1",
