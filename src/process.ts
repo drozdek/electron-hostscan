@@ -18,7 +18,6 @@ $(() => {
     $scanResultFailed = $('#scan-result-failed');
 
   $('body').on('click', 'input[type=submit]', function (e: any) {
-
     let _val = $('input[type=text]').val();
     if (checkAddr(_val as string)) {
       $scanResult.empty();
@@ -64,7 +63,7 @@ $(() => {
     let ip = getIP($('#ip_addr').val() as string);
 
     var start = 1,
-      end = 100;
+      end = 1000;
 
     while (start <= end) {
 
@@ -77,18 +76,18 @@ $(() => {
           $scanResult.
             empty().
             addClass('result_port-open').
-            append('OPEN: ' + port);
+            append(`OPEN: ${port}`);
         });
-        
+
         s.on('data', function (data: object) {
           $scanResult.
-            append('DATA: ' + data);
+            append(`DATA: ${data}`);
         });
 
         s.on('error', function (e: string) {
           $scanResultFailed.
             addClass('result_port-error').
-            text('Scanning port ' + port);
+            text(`Scanning port: ${port}`);
 
           if (e === 'ECONNREFUSED') {
             return;

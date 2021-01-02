@@ -54,7 +54,7 @@ $(() => {
      */
     function scanHost() {
         let ip = getIP($('#ip_addr').val());
-        var start = 1, end = 100;
+        var start = 1, end = 1000;
         while (start <= end) {
             (function (port) {
                 var port = start, s = new net.Socket();
@@ -62,16 +62,16 @@ $(() => {
                     $scanResult.
                         empty().
                         addClass('result_port-open').
-                        append('OPEN: ' + port);
+                        append(`OPEN: ${port}`);
                 });
                 s.on('data', function (data) {
                     $scanResult.
-                        append('DATA: ' + data);
+                        append(`DATA: ${data}`);
                 });
                 s.on('error', function (e) {
                     $scanResultFailed.
                         addClass('result_port-error').
-                        text('Scanning port ' + port);
+                        text(`Scanning port: ${port}`);
                     if (e === 'ECONNREFUSED') {
                         return;
                     }
