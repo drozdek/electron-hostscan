@@ -31,9 +31,10 @@ $(() => {
   });
 
   /**
-   * @method getIP
+   * @method getIP - transforms url into its IP equivalent
    *
    * @param {string} url
+   * @returns {string} 
    */
   function getIP(url: string): string {
     let ip = dns.lookup(url, function (error: string, addresses: string, family: string) {
@@ -43,9 +44,10 @@ $(() => {
   }
 
   /**
-   * @method checkAddr
+   * @method checkAddr - checks address/url 
    *
-   * @param {int} param
+   * @param {string} param
+   * @returns {boolelan|string}
    */
   var checkAddr = function (param: string): boolean | string {
     if (typeof param === "undefined" || !getIP(param))
@@ -55,9 +57,8 @@ $(() => {
   };
 
   /**
-   * @method checkServer
+   * @method scanHost - performs a host scan
    *
-   * @param {string} IP
    */
   function scanHost() {
     let ip = getIP($('#ip_addr').val() as string);
