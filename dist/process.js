@@ -14,10 +14,10 @@ $(() => {
     // obj ERROR to hold error responses
     let ERROR = {}, $scanResult = $('#scan-result'), $scanResultFailed = $('#scan-result-failed');
     $('body').on('click', 'input[type=submit]', function (e) {
+        $scanResult.empty();
+        $scanResultFailed.empty();
         let _val = $('input[type=text]').val();
         if (checkAddr(_val)) {
-            $scanResult.empty();
-            $scanResultFailed.empty();
             scanHost();
             return false;
         }

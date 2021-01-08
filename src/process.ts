@@ -18,10 +18,12 @@ $(() => {
     $scanResultFailed = $('#scan-result-failed');
 
   $('body').on('click', 'input[type=submit]', function (e: any) {
+
+    $scanResult.empty();
+    $scanResultFailed.empty();
+
     let _val = $('input[type=text]').val();
     if (checkAddr(_val as string)) {
-      $scanResult.empty();
-      $scanResultFailed.empty();
       scanHost();
       return false;
     }
