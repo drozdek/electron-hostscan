@@ -18,10 +18,12 @@ $(() => {
     $scanResultFailed = $('#scan-result-failed');
 
   $('body').on('click', 'input[type=submit]', function (e: any) {
+
+    $scanResult.empty();
+    $scanResultFailed.empty();
+
     let _val = $('input[type=text]').val();
     if (checkAddr(_val as string)) {
-      $scanResult.empty();
-      $scanResultFailed.empty();
       scanHost();
       return false;
     }
@@ -75,9 +77,8 @@ $(() => {
 
         s.connect(port, ip, function () {
           $scanResult.
-            empty().
             addClass('result_port-open').
-            append(`OPEN: ${port}`);
+            append(`OPEN: ${port} <br />`);
         });
 
         s.on('data', function (data: object) {

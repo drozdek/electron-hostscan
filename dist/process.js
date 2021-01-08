@@ -14,10 +14,10 @@ $(() => {
     // obj ERROR to hold error responses
     let ERROR = {}, $scanResult = $('#scan-result'), $scanResultFailed = $('#scan-result-failed');
     $('body').on('click', 'input[type=submit]', function (e) {
+        $scanResult.empty();
+        $scanResultFailed.empty();
         let _val = $('input[type=text]').val();
         if (checkAddr(_val)) {
-            $scanResult.empty();
-            $scanResultFailed.empty();
             scanHost();
             return false;
         }
@@ -60,9 +60,8 @@ $(() => {
                 var port = start, s = new net.Socket();
                 s.connect(port, ip, function () {
                     $scanResult.
-                        empty().
                         addClass('result_port-open').
-                        append(`OPEN: ${port}`);
+                        append(`OPEN: ${port} <br />`);
                 });
                 s.on('data', function (data) {
                     $scanResult.
