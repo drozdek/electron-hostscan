@@ -74,9 +74,8 @@ $(() => {
 
         s.connect(port, ip, function () {
           $scanResult.
-            empty().
             addClass('result_port-open').
-            append(`OPEN: ${port}`);
+            append(`OPEN: ${port} <br />`);
         });
 
         s.on('data', function (data: object) {
