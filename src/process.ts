@@ -14,8 +14,10 @@ $(() => {
 
   // obj ERROR to hold error responses
   let ERROR: object = {},
+    $msg = $('#msg'),
     $scanResult = $('#scan-result'),
-    $scanResultFailed = $('#scan-result-failed');
+    $scanResultFailed = $('#scan-result-failed'),
+    $ipAddr = $('#ip_addr');
 
   $('body').on('click', 'input[type=submit]', function (e: any) {
 
@@ -33,9 +35,10 @@ $(() => {
   });
 
   /**
-   * @method getIP
+   * @method getIP - transforms url into its IP equivalent
    *
    * @param {string} url
+   * @returns {string} 
    */
   function getIP(url: string): string {
     let ip = dns.lookup(url, function (error: string, addresses: string, family: string) {
@@ -45,9 +48,10 @@ $(() => {
   }
 
   /**
-   * @method checkAddr
+   * @method checkAddr - checks address/url 
    *
-   * @param {int} param
+   * @param {string} param
+   * @returns {boolelan|string}
    */
   var checkAddr = function (param: string): boolean | string {
     if (typeof param === "undefined" || !getIP(param))
@@ -57,12 +61,13 @@ $(() => {
   };
 
   /**
-   * @method checkServer
+   * @method scanHost - performs a host scan
    *
-   * @param {string} IP
    */
   function scanHost() {
-    let ip = getIP($('#ip_addr').val() as string);
+    let ip = getIP($ipAddr.val() as string);
+
+    $msg.text(`Scanning host ${$ipAddr.val()}...`);
 
     var start = 1,
       end = 1000;
@@ -86,13 +91,11 @@ $(() => {
         });
 
         s.on('error', function (e: string) {
-          $scanResultFailed.
-            addClass('result_port-error').
-            text(`Scanning port: ${port}`);
 
           if (e === 'ECONNREFUSED') {
             return;
           }
+
         });
       })(start);
       start++;
