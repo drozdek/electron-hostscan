@@ -14,8 +14,10 @@ $(() => {
 
   // obj ERROR to hold error responses
   let ERROR: object = {},
+    $msg = $('#msg'),
     $scanResult = $('#scan-result'),
-    $scanResultFailed = $('#scan-result-failed');
+    $scanResultFailed = $('#scan-result-failed'),
+    $ipAddr = $('#ip_addr');
 
   $('body').on('click', 'input[type=submit]', function (e: any) {
 
@@ -63,7 +65,9 @@ $(() => {
    *
    */
   function scanHost() {
-    let ip = getIP($('#ip_addr').val() as string);
+    let ip = getIP($ipAddr.val() as string);
+
+    $msg.text(`Scanning host ${$ipAddr.val()}...`);
 
     var start = 1,
       end = 1000;
@@ -87,13 +91,11 @@ $(() => {
         });
 
         s.on('error', function (e: string) {
-          $scanResultFailed.
-            addClass('result_port-error').
-            text(`Scanning port: ${port}`);
 
           if (e === 'ECONNREFUSED') {
             return;
           }
+
         });
       })(start);
       start++;
