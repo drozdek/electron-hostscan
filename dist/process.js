@@ -13,7 +13,7 @@ $(() => {
     ;
     // obj ERROR to hold error responses
     let ERROR = {}, $msg = $('#msg'), $scanResult = $('#scan-result'), $scanResultFailed = $('#scan-result-failed'), $ipAddr = $('#ip_addr');
-    $('body').on('click', 'input[type=submit]', function (e) {
+    $('body').on('click', 'input[type=submit]', (e) => {
         $scanResult.empty();
         $scanResultFailed.empty();
         let _val = $('input[type=text]').val();
@@ -31,19 +31,19 @@ $(() => {
      * @param {string} url
      * @returns {string}
      */
-    function getIP(url) {
-        let ip = dns.lookup(url, function (error, addresses, family) {
+    let getIP = (url) => {
+        let ip = dns.lookup(url, (error, addresses, family) => {
             return addresses;
         });
         return ip;
-    }
+    };
     /**
      * @method checkAddr - checks address/url
      *
      * @param {string} param
      * @returns {boolelan|string}
      */
-    var checkAddr = function (param) {
+    let checkAddr = (param) => {
         if (typeof param === "undefined" || !getIP(param))
             return false;
         else
@@ -53,23 +53,23 @@ $(() => {
      * @method scanHost - performs a host scan
      *
      */
-    function scanHost() {
+    let scanHost = () => {
         let ip = getIP($ipAddr.val());
         $msg.text(`Scanning host ${$ipAddr.val()}...`);
-        var start = 1, end = 1000;
+        let start = 1, end = 1000;
         while (start <= end) {
-            (function (port) {
-                var port = start, s = new net.Socket();
-                s.connect(port, ip, function () {
+            ((port) => {
+                let p = start, s = new net.Socket();
+                s.connect(p, ip, () => {
                     $scanResult.
                         addClass('result_port-open').
-                        append(`OPEN: ${port} <br />`);
+                        append(`OPEN: ${p} <br />`);
                 });
-                s.on('data', function (data) {
+                s.on('data', (data) => {
                     $scanResult.
                         append(`DATA: ${data}`);
                 });
-                s.on('error', function (e) {
+                s.on('error', (e) => {
                     if (e === 'ECONNREFUSED') {
                         return;
                     }
@@ -77,6 +77,5 @@ $(() => {
             })(start);
             start++;
         }
-    }
-    ;
+    };
 });

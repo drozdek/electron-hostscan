@@ -19,8 +19,7 @@ $(() => {
     $scanResultFailed = $('#scan-result-failed'),
     $ipAddr = $('#ip_addr');
 
-  $('body').on('click', 'input[type=submit]', function (e: any) {
-
+  $('body').on('click', 'input[type=submit]', (e: any) => {
     $scanResult.empty();
     $scanResultFailed.empty();
 
@@ -40,8 +39,8 @@ $(() => {
    * @param {string} url
    * @returns {string} 
    */
-  function getIP(url: string): string {
-    let ip = dns.lookup(url, function (error: string, addresses: string, family: string) {
+  let getIP = (url: string): string => {
+    let ip = dns.lookup(url, (error: string, addresses: string, family: string) => {
       return addresses
     });
     return ip;
@@ -53,7 +52,7 @@ $(() => {
    * @param {string} param
    * @returns {boolelan|string}
    */
-  var checkAddr = function (param: string): boolean | string {
+  let checkAddr = (param: string): boolean | string => {
     if (typeof param === "undefined" || !getIP(param))
       return false;
     else
@@ -64,33 +63,33 @@ $(() => {
    * @method scanHost - performs a host scan
    *
    */
-  function scanHost() {
+  let scanHost = () => {
     let ip = getIP($ipAddr.val() as string);
 
     $msg.text(`Scanning host ${$ipAddr.val()}...`);
 
-    var start = 1,
+    let start = 1,
       end = 1000;
 
     while (start <= end) {
 
-      (function (port) {
+      ((port) => {
 
-        var port = start,
+        let p = start,
           s = new net.Socket();
 
-        s.connect(port, ip, function () {
+        s.connect(p, ip, () => {
           $scanResult.
             addClass('result_port-open').
-            append(`OPEN: ${port} <br />`);
+            append(`OPEN: ${p} <br />`);
         });
 
-        s.on('data', function (data: object) {
+        s.on('data', (data: object) => {
           $scanResult.
             append(`DATA: ${data}`);
         });
 
-        s.on('error', function (e: string) {
+        s.on('error', (e: string) => {
 
           if (e === 'ECONNREFUSED') {
             return;
