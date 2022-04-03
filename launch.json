@@ -1,18 +1,18 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "electron",
-            "request": "launch",
-            "name": "Launch this",
-            "sourceMaps": true
-        },
-        {
-            "type": "electron",
-            "request": "launch",
-            "name": "Launch something",
-            "appDir": "C:/source/hostscan",
-            "sourceMaps": true
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "electron",
+      "request": "launch",
+      "name": "Launch this",
+      "sourceMaps": true
+    },
+    {
+      "type": "electron",
+      "request": "launch",
+      "name": "Launch something",
+      "appDir": "C:/source/hostscan",
+      "sourceMaps": true
+    }
+  ]
 }

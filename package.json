@@ -10,7 +10,8 @@
   },
   "scripts": {
     "run": "electron .",
-    "watch": "nodemon --exec electron ."
+    "watch": "nodemon --exec electron .",
+    "check": "prettier --write ."
   },
   "keywords": [
     "scanhost",

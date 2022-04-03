@@ -13,15 +13,15 @@ input {
   /*border: 3px solid red;*/
 }
 
-input[type=text] {
+input[type="text"] {
   height: 15px;
-  width: 150px
+  width: 150px;
 }
 
 .result_port-open {
-  color: var(--result_port-open)
+  color: var(--result_port-open);
 }
 
 .result_port-error {
-  color: var(--result_port-error)
+  color: var(--result_port-error);
 }
